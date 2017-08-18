@@ -19,11 +19,7 @@
     },
     "require-dev": {
         "ext-curl": "*",
-<<<<<<< HEAD
         "phpunit/phpunit": "^4.0 || ^5.0",
-=======
-        "phpunit/phpunit": "^4.0",
->>>>>>> upstream/master
         "psr/log": "^1.0"
     },
     "autoload": {
@@ -37,12 +33,9 @@
             "GuzzleHttp\\Tests\\": "tests/"
         }
     },
-<<<<<<< HEAD
     "suggest": {
         "psr/log": "Required for using the Log middleware"
     },
-=======
->>>>>>> upstream/master
     "extra": {
         "branch-alias": {
             "dev-master": "6.2-dev"

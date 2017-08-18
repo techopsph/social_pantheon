@@ -1,6 +1,5 @@
 # CHANGELOG
 
-<<<<<<< HEAD
 ## 6.3.0 - 2017-06-22
 
 * Feature: force IP resolution (ipv4 or ipv6) [#1608](https://github.com/guzzle/guzzle/pull/1608), [#1659](https://github.com/guzzle/guzzle/pull/1659)
@@ -22,8 +21,6 @@
 
 + Minor code cleanups, documentation fixes and clarifications.
 
-=======
->>>>>>> upstream/master
 ## 6.2.3 - 2017-02-28
 
 * Fix deprecations with guzzle/psr7 version 1.4

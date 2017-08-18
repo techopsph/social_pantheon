@@ -144,14 +144,6 @@
  * @code
  *   'prefix' => 'main_',
  * @endcode
-<<<<<<< HEAD
- *
- * Per-table prefixes are deprecated as of Drupal 8.2, and will be removed in
- * Drupal 9.0. After that, only a single prefix for all tables will be
- * supported.
- *
-=======
->>>>>>> upstream/master
  * To provide prefixes for specific tables, set 'prefix' as an array.
  * The array's keys are the table names and the values are the prefixes.
  * The 'default' element is mandatory and holds the prefix for any tables
@@ -273,14 +265,6 @@ $config_directories = array();
  * by the user.
  *
  * @see install_select_profile()
-<<<<<<< HEAD
- *
- * @deprecated in Drupal 8.3.0 and will be removed before Drupal 9.0.0. The
- *   install profile is written to the core.extension configuration. If a
- *   service requires the install profile use the 'install_profile' container
- *   parameter. Functional code can use \Drupal::installProfile().
-=======
->>>>>>> upstream/master
  */
 # $settings['install_profile'] = '';
 
@@ -756,8 +740,6 @@ $settings['file_scan_ignore_directories'] = [
 ];
 
 /**
-<<<<<<< HEAD
-=======
  * Include the Pantheon-specific settings file.
  *
  * n.b. The settings.pantheon.php file makes some changes
@@ -771,7 +753,6 @@ if (file_exists(__DIR__ . '/settings.pantheon.php')) {
 }
 
 /**
->>>>>>> upstream/master
  * Load local development override configuration, if available.
  *
  * Use settings.local.php to override variables on secondary (staging,

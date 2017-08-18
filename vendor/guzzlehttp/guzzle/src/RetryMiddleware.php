@@ -97,11 +97,7 @@ class RetryMiddleware
                 null,
                 $reason
             )) {
-<<<<<<< HEAD
                 return \GuzzleHttp\Promise\rejection_for($reason);
-=======
-                return new RejectedPromise($reason);
->>>>>>> upstream/master
             }
             return $this->doRetry($req, $options);
         };

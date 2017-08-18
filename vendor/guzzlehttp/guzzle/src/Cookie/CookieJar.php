@@ -86,7 +86,6 @@ class CookieJar implements CookieJarInterface
         return false;
     }
 
-<<<<<<< HEAD
     /**
      * Finds and returns the cookie based on the name
      *
@@ -106,8 +105,6 @@ class CookieJar implements CookieJarInterface
         }
     }
 
-=======
->>>>>>> upstream/master
     public function toArray()
     {
         return array_map(function (SetCookie $cookie) {
@@ -238,18 +235,14 @@ class CookieJar implements CookieJarInterface
                 if (!$sc->getDomain()) {
                     $sc->setDomain($request->getUri()->getHost());
                 }
-<<<<<<< HEAD
                 if (0 !== strpos($sc->getPath(), '/')) {
                     $sc->setPath($this->getCookiePathFromRequest($request));
                 }
-=======
->>>>>>> upstream/master
                 $this->setCookie($sc);
             }
         }
     }
 
-<<<<<<< HEAD
     /**
      * Computes cookie path following RFC 6265 section 5.1.4
      *
@@ -277,8 +270,6 @@ class CookieJar implements CookieJarInterface
         return substr($uriPath, 0, $lastSlashPos);
     }
 
-=======
->>>>>>> upstream/master
     public function withCookieHeader(RequestInterface $request)
     {
         $values = [];

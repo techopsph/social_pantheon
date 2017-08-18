@@ -1,10 +1,7 @@
 <?php
 namespace GuzzleHttp\Handler;
 
-<<<<<<< HEAD
 use GuzzleHttp\Exception\RequestException;
-=======
->>>>>>> upstream/master
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Promise\RejectedPromise;
@@ -17,11 +14,7 @@ use Psr\Http\Message\ResponseInterface;
  */
 class MockHandler implements \Countable
 {
-<<<<<<< HEAD
     private $queue = [];
-=======
-    private $queue;
->>>>>>> upstream/master
     private $lastRequest;
     private $lastOptions;
     private $onFulfilled;
@@ -81,7 +74,6 @@ class MockHandler implements \Countable
         $this->lastOptions = $options;
         $response = array_shift($this->queue);
 
-<<<<<<< HEAD
         if (isset($options['on_headers'])) {
             if (!is_callable($options['on_headers'])) {
                 throw new \InvalidArgumentException('on_headers must be callable');
@@ -94,18 +86,12 @@ class MockHandler implements \Countable
             }
         }
 
-=======
->>>>>>> upstream/master
         if (is_callable($response)) {
             $response = call_user_func($response, $request, $options);
         }
 
         $response = $response instanceof \Exception
-<<<<<<< HEAD
             ? \GuzzleHttp\Promise\rejection_for($response)
-=======
-            ? new RejectedPromise($response)
->>>>>>> upstream/master
             : \GuzzleHttp\Promise\promise_for($response);
 
         return $response->then(
@@ -134,11 +120,7 @@ class MockHandler implements \Countable
                 if ($this->onRejected) {
                     call_user_func($this->onRejected, $reason);
                 }
-<<<<<<< HEAD
                 return \GuzzleHttp\Promise\rejection_for($reason);
-=======
-                return new RejectedPromise($reason);
->>>>>>> upstream/master
             }
         );
     }
@@ -176,11 +158,7 @@ class MockHandler implements \Countable
     /**
      * Get the last received request options.
      *
-<<<<<<< HEAD
      * @return array
-=======
-     * @return RequestInterface
->>>>>>> upstream/master
      */
     public function getLastOptions()
     {

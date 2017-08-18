@@ -108,11 +108,7 @@ class Candidates implements CandidatesInterface
         }
 
         $matches = array();
-<<<<<<< HEAD
         if (preg_match('#^/('.implode('|', $this->locales).')(/|$)#', $url, $matches)) {
-=======
-        if (preg_match('#('.implode('|', $this->locales).')(/|$)#', $url, $matches)) {
->>>>>>> upstream/master
             return $matches[1];
         }
 

@@ -16,11 +16,7 @@ use Psr\Http\Message\RequestInterface;
 class CurlFactory implements CurlFactoryInterface
 {
     /** @var array */
-<<<<<<< HEAD
     private $handles = [];
-=======
-    private $handles;
->>>>>>> upstream/master
 
     /** @var int Total number of idle handles to keep in cache */
     private $maxHandles;
@@ -167,11 +163,7 @@ class CurlFactory implements CurlFactoryInterface
         // If an exception was encountered during the onHeaders event, then
         // return a rejected promise that wraps that exception.
         if ($easy->onHeadersException) {
-<<<<<<< HEAD
             return \GuzzleHttp\Promise\rejection_for(
-=======
-            return new RejectedPromise(
->>>>>>> upstream/master
                 new RequestException(
                     'An error was encountered during the on_headers event',
                     $easy->request,
@@ -194,11 +186,7 @@ class CurlFactory implements CurlFactoryInterface
             ? new ConnectException($message, $easy->request, null, $ctx)
             : new RequestException($message, $easy->request, $easy->response, null, $ctx);
 
-<<<<<<< HEAD
         return \GuzzleHttp\Promise\rejection_for($error);
-=======
-        return new RejectedPromise($error);
->>>>>>> upstream/master
     }
 
     private function getDefaultConf(EasyHandle $easy)
@@ -338,17 +326,12 @@ class CurlFactory implements CurlFactoryInterface
                 $conf[CURLOPT_SSL_VERIFYHOST] = 2;
                 $conf[CURLOPT_SSL_VERIFYPEER] = true;
                 if (is_string($options['verify'])) {
-<<<<<<< HEAD
                     // Throw an error if the file/folder/link path is not valid or doesn't exist.
-=======
-                    $conf[CURLOPT_CAINFO] = $options['verify'];
->>>>>>> upstream/master
                     if (!file_exists($options['verify'])) {
                         throw new \InvalidArgumentException(
                             "SSL CA bundle not found: {$options['verify']}"
                         );
                     }
-<<<<<<< HEAD
                     // If it's a directory or a link to a directory use CURLOPT_CAPATH.
                     // If not, it's probably a file, or a link to a file, so use CURLOPT_CAINFO.
                     if (is_dir($options['verify']) ||
@@ -357,8 +340,6 @@ class CurlFactory implements CurlFactoryInterface
                     } else {
                         $conf[CURLOPT_CAINFO] = $options['verify'];
                     }
-=======
->>>>>>> upstream/master
                 }
             }
         }
@@ -397,7 +378,6 @@ class CurlFactory implements CurlFactoryInterface
             $conf[CURLOPT_FILE] = fopen('php://temp', 'w+');
             $easy->sink = Psr7\stream_for($conf[CURLOPT_FILE]);
         }
-<<<<<<< HEAD
         $timeoutRequiresNoSignal = false;
         if (isset($options['timeout'])) {
             $timeoutRequiresNoSignal |= $options['timeout'] < 1;
@@ -422,17 +402,6 @@ class CurlFactory implements CurlFactoryInterface
             $conf[CURLOPT_NOSIGNAL] = true;
         }
 
-=======
-
-        if (isset($options['timeout'])) {
-            $conf[CURLOPT_TIMEOUT_MS] = $options['timeout'] * 1000;
-        }
-
-        if (isset($options['connect_timeout'])) {
-            $conf[CURLOPT_CONNECTTIMEOUT_MS] = $options['connect_timeout'] * 1000;
-        }
-
->>>>>>> upstream/master
         if (isset($options['proxy'])) {
             if (!is_array($options['proxy'])) {
                 $conf[CURLOPT_PROXY] = $options['proxy'];

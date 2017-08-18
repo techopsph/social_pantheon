@@ -1,7 +1,6 @@
 <?php
 namespace GuzzleHttp\Exception;
 
-<<<<<<< HEAD
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -26,9 +25,3 @@ class BadResponseException extends RequestException
         parent::__construct($message, $request, $response, $previous, $handlerContext);
     }
 }
-=======
-/**
- * Exception when an HTTP error occurs (4xx or 5xx error)
- */
-class BadResponseException extends RequestException {}
->>>>>>> upstream/master
