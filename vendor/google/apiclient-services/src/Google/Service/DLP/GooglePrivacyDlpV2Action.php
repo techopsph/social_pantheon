@@ -17,11 +17,29 @@
 
 class Google_Service_DLP_GooglePrivacyDlpV2Action extends Google_Model
 {
+  protected $jobNotificationEmailsType = 'Google_Service_DLP_GooglePrivacyDlpV2JobNotificationEmails';
+  protected $jobNotificationEmailsDataType = '';
   protected $pubSubType = 'Google_Service_DLP_GooglePrivacyDlpV2PublishToPubSub';
   protected $pubSubDataType = '';
+  protected $publishSummaryToCsccType = 'Google_Service_DLP_GooglePrivacyDlpV2PublishSummaryToCscc';
+  protected $publishSummaryToCsccDataType = '';
   protected $saveFindingsType = 'Google_Service_DLP_GooglePrivacyDlpV2SaveFindings';
   protected $saveFindingsDataType = '';
 
+  /**
+   * @param Google_Service_DLP_GooglePrivacyDlpV2JobNotificationEmails
+   */
+  public function setJobNotificationEmails(Google_Service_DLP_GooglePrivacyDlpV2JobNotificationEmails $jobNotificationEmails)
+  {
+    $this->jobNotificationEmails = $jobNotificationEmails;
+  }
+  /**
+   * @return Google_Service_DLP_GooglePrivacyDlpV2JobNotificationEmails
+   */
+  public function getJobNotificationEmails()
+  {
+    return $this->jobNotificationEmails;
+  }
   /**
    * @param Google_Service_DLP_GooglePrivacyDlpV2PublishToPubSub
    */
@@ -35,6 +53,20 @@ class Google_Service_DLP_GooglePrivacyDlpV2Action extends Google_Model
   public function getPubSub()
   {
     return $this->pubSub;
+  }
+  /**
+   * @param Google_Service_DLP_GooglePrivacyDlpV2PublishSummaryToCscc
+   */
+  public function setPublishSummaryToCscc(Google_Service_DLP_GooglePrivacyDlpV2PublishSummaryToCscc $publishSummaryToCscc)
+  {
+    $this->publishSummaryToCscc = $publishSummaryToCscc;
+  }
+  /**
+   * @return Google_Service_DLP_GooglePrivacyDlpV2PublishSummaryToCscc
+   */
+  public function getPublishSummaryToCscc()
+  {
+    return $this->publishSummaryToCscc;
   }
   /**
    * @param Google_Service_DLP_GooglePrivacyDlpV2SaveFindings

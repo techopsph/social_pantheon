@@ -26,13 +26,13 @@
 class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsEntityTypes extends Google_Service_Resource
 {
   /**
-   * Creates a session entity type. (entityTypes.create)
+   * Creates a session entity type.
+   *
+   * If the specified session entity type already exists, overrides the session
+   * entity type. (entityTypes.create)
    *
    * @param string $parent Required. The session to create a session entity type
-   * for. Format: `projects//agent/sessions/` or
-   * `projects//agent/runtimes//sessions/`. Note: Runtimes are under construction
-   * and will be available soon. If  is not specified, we assume default 'sandbox'
-   * runtime.
+   * for. Format: `projects//agent/sessions/`.
    * @param Google_Service_Dialogflow_GoogleCloudDialogflowV2SessionEntityType $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dialogflow_GoogleCloudDialogflowV2SessionEntityType
@@ -47,10 +47,7 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsEntityTypes extend
    * Deletes the specified session entity type. (entityTypes.delete)
    *
    * @param string $name Required. The name of the entity type to delete. Format:
-   * `projects//agent/sessions//entityTypes/` or
-   * `projects//agent/runtimes//sessions//entityTypes/`. Note: Runtimes are under
-   * construction and will be available soon. If  is not specified, we assume
-   * default 'sandbox' runtime.
+   * `projects//agent/sessions//entityTypes/`.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dialogflow_GoogleProtobufEmpty
    */
@@ -64,10 +61,7 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsEntityTypes extend
    * Retrieves the specified session entity type. (entityTypes.get)
    *
    * @param string $name Required. The name of the session entity type. Format:
-   * `projects//agent/sessions//entityTypes/` or
-   * `projects//agent/runtimes//sessions//entityTypes/`. Note: Runtimes are under
-   * construction and will be available soon. If  is not specified, we assume
-   * default 'sandbox' runtime.
+   * `projects//agent/sessions//entityTypes/`.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dialogflow_GoogleCloudDialogflowV2SessionEntityType
    */
@@ -82,10 +76,7 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsEntityTypes extend
    * (entityTypes.listProjectsAgentSessionsEntityTypes)
    *
    * @param string $parent Required. The session to list all session entity types
-   * from. Format: `projects//agent/sessions/` or
-   * `projects//agent/runtimes//sessions/`. Note: Runtimes are under construction
-   * and will be available soon. If  is not specified, we assume default 'sandbox'
-   * runtime.
+   * from. Format: `projects//agent/sessions/`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string pageToken Optional. The next_page_token value returned from
@@ -104,10 +95,10 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsEntityTypes extend
    * Updates the specified session entity type. (entityTypes.patch)
    *
    * @param string $name Required. The unique identifier of this session entity
-   * type. Format: `projects//agent/sessions//entityTypes/`, or
-   * `projects//agent/runtimes/sessions//entityTypes/`. Note: Runtimes are under
-   * construction and will be available soon. If  is not specified, we assume
-   * default 'sandbox' runtime.
+   * type. Format: `projects//agent/sessions//entityTypes/`.
+   *
+   * `` must be the display name of an existing entity type in the same agent that
+   * will be overridden or supplemented.
    * @param Google_Service_Dialogflow_GoogleCloudDialogflowV2SessionEntityType $postBody
    * @param array $optParams Optional parameters.
    *

@@ -19,7 +19,7 @@
  * Service definition for Genomics (v1).
  *
  * <p>
- * Upload, process, query, and search Genomics data in the cloud.</p>
+ * Uploads, processes, queries, and searches Genomics data in the cloud.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -70,6 +70,7 @@ class Google_Service_Genomics extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://genomics.googleapis.com/';
     $this->servicePath = '';
+    $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'genomics';
 
@@ -467,10 +468,6 @@ class Google_Service_Genomics extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'end' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -488,6 +485,10 @@ class Google_Service_Genomics extends Google_Service
                   'type' => 'string',
                 ),
                 'referenceName' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'end' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -549,6 +550,10 @@ class Google_Service_Genomics extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'end' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -558,10 +563,6 @@ class Google_Service_Genomics extends Google_Service
                   'type' => 'integer',
                 ),
                 'start' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'end' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

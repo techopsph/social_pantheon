@@ -19,11 +19,11 @@
  * Service definition for CloudBuild (v1).
  *
  * <p>
- * Builds container images in the cloud.</p>
+ * Creates and manages builds on Google Cloud Platform.</p>
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://cloud.google.com/container-builder/docs/" target="_blank">Documentation</a>
+ * <a href="https://cloud.google.com/cloud-build/docs/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -48,6 +48,7 @@ class Google_Service_CloudBuild extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://cloudbuild.googleapis.com/';
     $this->servicePath = '';
+    $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'cloudbuild';
 

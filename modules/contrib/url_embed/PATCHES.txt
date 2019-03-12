@@ -9,3 +9,7 @@ Improve performance for embeds
 Source: https://www.drupal.org/files/issues/caching_layer_url_embed_2867668-14.patch
 
 
+Translate dialog title
+Source: https://www.drupal.org/files/issues/2018-03-16/url_embed_translate_dialog_title-2953591-2.patch
+
+
