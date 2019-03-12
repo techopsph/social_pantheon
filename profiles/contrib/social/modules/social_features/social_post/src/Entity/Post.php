@@ -160,6 +160,55 @@ class Post extends ContentEntityBase implements PostInterface {
   /**
    * {@inheritdoc}
    */
+  public function getVisibility() {
+    if ($this->hasField('field_visibility')) {
+      switch ($this->field_visibility->value) {
+
+        case "0":
+        case "2":
+          $visibility = 'community';
+          break;
+
+        case "1":
+          $visibility = 'public';
+          break;
+
+        case "3":
+          $visibility = 'group';
+          break;
+      }
+    }
+
+    return $visibility;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setVisibility($visibility) {
+    if ($this->hasField('field_visibility')) {
+      switch ($visibility) {
+
+        case 'community':
+          $this->set('field_visibility', 0);
+          break;
+
+        case 'public':
+          $this->set('field_visibility', 1);
+          break;
+
+        case "group":
+          $this->set('field_visibility', 3);
+          break;
+      }
+    }
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getCacheContexts() {
     $defaults = parent::getCacheContexts();
 
@@ -214,9 +263,17 @@ class Post extends ContentEntityBase implements PostInterface {
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('Publishing status'))
-      ->setDescription(t('A boolean indicating whether the Post is published.'))
+      ->setLabel(t('Published'))
       ->setDefaultValue(TRUE);
+    $fields['status']
+      ->setDisplayOptions('form', [
+        'type' => 'boolean_checkbox',
+        'settings' => [
+          'display_label' => TRUE,
+        ],
+        'weight' => 20,
+      ])
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['langcode'] = BaseFieldDefinition::create('language')
       ->setLabel(t('Language code'))

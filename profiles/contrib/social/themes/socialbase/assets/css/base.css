@@ -332,10 +332,6 @@ h6, .h6 {
 img {
   border-style: none;
   vertical-align: middle;
-}
-
-img,
-svg {
   max-width: 100%;
   height: auto;
 }
@@ -544,7 +540,6 @@ th {
 }
 
 .table thead th {
-  text-transform: uppercase;
   font-weight: 500;
   font-size: 12px;
   vertical-align: bottom;
@@ -1129,6 +1124,14 @@ svg[class^="icon-"] {
   height: 18px;
   display: inline-block;
   vertical-align: middle;
+}
+
+.icon-visibility {
+  width: 15px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: text-bottom;
+  fill: #4d4d4d;
 }
 
 .icon-responsive {

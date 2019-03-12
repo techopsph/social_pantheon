@@ -56,4 +56,10 @@ function template_preprocess_post(array &$variables) {
   if ($post->getCreatedTime() != $post->getChangedTime()) {
     $variables['modified'] = TRUE;
   }
+
+  // Visibility icon and label for template use.
+  $variables['visibility_icon'] = social_post_get_visibility_details($post->get('field_visibility')->value, 'icon');
+  $variables['visibility_label'] = social_post_get_visibility_details($post->get('field_visibility')->value, 'label');
+
+  $variables['published'] = $post->isPublished();
 }

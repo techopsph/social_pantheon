@@ -2,9 +2,14 @@
 
 namespace Drupal\social_post\Form;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for Post edit forms.
@@ -16,6 +21,33 @@ class PostForm extends ContentEntityForm {
   private $postViewDefault;
   private $postViewProfile;
   private $postViewGroup;
+
+  /**
+   * The Current User object.
+   *
+   * @var \Drupal\Core\Session\AccountInterface
+   */
+  protected $currentUser;
+
+  /**
+   * Constructs a Form object.
+   */
+  public function __construct(AccountInterface $current_user, EntityRepositoryInterface $entity_repository, EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL, TimeInterface $time = NULL) {
+    parent::__construct($entity_repository, $entity_type_bundle_info, $time);
+    $this->currentUser = $current_user;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('current_user'),
+      $container->get('entity.repository'),
+      $container->get('entity_type.bundle.info'),
+      $container->get('datetime.time')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -50,6 +82,13 @@ class PostForm extends ContentEntityForm {
     // If this post has a visibility field then we configure its allowed values.
     if (isset($form['field_visibility'])) {
       $this->configureVisibilityField($form, $form_state);
+    }
+
+    if ($this->entity->isNew()) {
+      unset($form['status']);
+    }
+    else {
+      $form['status']['#access'] = $this->currentUser->hasPermission('edit any post entities');
     }
 
     return $form;

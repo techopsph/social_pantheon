@@ -17,6 +17,7 @@
 #}
 
 {{ attach_library('socialbase/comment') }}
+{{ attach_library('socialbase/page-node')}}
 <div class="card">
   <div class="card__block">
 
@@ -32,13 +33,26 @@
             {% if content.user_id %}
               {{ content.user_id }}
             {% endif %}
-            <div class="post-date">{{ date }}</div>
+            <div class="post-date">
+                {{ date }}
+                {% if visibility_icon and visibility_label %}
+                    <svg class="margin-left-s icon-visibility">
+                        <use xlink:href="#icon-{{ visibility_icon }}"></use>
+                    </svg>
+                    <strong>{{ visibility_label }}</strong>
+                {% endif %}
+            </div>
           </div>
         </div>
       </div>
 
-      {{ content.links }}
+      {% if published %}
+        {{ content.links }}
+      {% endif %}
   </div>
+    {% if not published %}
+    <div class="node--unpublished__label">{% trans %} unpublished {% endtrans %}</div>
+    {% endif %}
 
     <div class="margin-top-s iframe-container">
 

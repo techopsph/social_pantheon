@@ -11,6 +11,9 @@
           flex-direction: column;
   margin-bottom: 0.75rem;
   background-clip: padding-box;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .card__title {
@@ -19,7 +22,7 @@
   margin: 0;
   padding: 15px 1.25rem 0;
   line-height: 1;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .card__subtitle {
@@ -100,7 +103,6 @@
   float: right;
   -webkit-transition: color .3s ease;
   transition: color .3s ease;
-  text-transform: uppercase;
 }
 
 .card__text {

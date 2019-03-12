@@ -1,3 +1,5 @@
+@import 'settings';
+
 // Card
 //
 // The card is a very basic element that we see a lot in Open social.
@@ -46,7 +48,6 @@
 //
 // Style guide: atoms.card.nest-section
 
-@import 'settings';
 
 .card {
   @include z-depth-2;
@@ -55,6 +56,10 @@
   flex-direction: column;
   margin-bottom: $card-spacer-y;
   background-clip: padding-box;
+
+  // IE Fix: Default flex values for <IE11 is `flex: 0 0 auto` while other
+  // browsers and the spec says `flex: 0 1 auto`. We make it compliant here.
+  flex-grow: 1;
 }
 
 .card__title {
@@ -63,7 +68,7 @@
   margin: 0;
   padding: 15px $card-spacer-x 0;
   line-height: 1;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .card__subtitle {
@@ -143,7 +148,6 @@
   margin-left: 24px;
   float: right;
   transition: color .3s ease;
-  text-transform: uppercase;
 }
 
 .card__text {

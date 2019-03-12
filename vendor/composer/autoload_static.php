@@ -32,9 +32,17 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
     );
 
     public static $prefixLengthsPsr4 = array (
+        'z' => 
+        array (
+            'zaporylie\\ComposerDrupalOptimizations\\' => 38,
+        ),
         'p' => 
         array (
             'phpseclib\\' => 10,
+        ),
+        'l' => 
+        array (
+            'lsolesen\\pel\\' => 13,
         ),
         'c' => 
         array (
@@ -114,6 +122,7 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         ),
         'F' => 
         array (
+            'FontLib\\' => 8,
             'Firebase\\JWT\\' => 13,
             'Facebook\\' => 9,
         ),
@@ -123,6 +132,7 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         ),
         'D' => 
         array (
+            'Drupal\\social\\Behat\\' => 20,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\' => 12,
             'Drupal\\Component\\' => 17,
@@ -150,9 +160,17 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
     );
 
     public static $prefixDirsPsr4 = array (
+        'zaporylie\\ComposerDrupalOptimizations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zaporylie/composer-drupal-optimizations/src',
+        ),
         'phpseclib\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+        ),
+        'lsolesen\\pel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lsolesen/pel/src',
         ),
         'cweagans\\Composer\\' => 
         array (
@@ -340,6 +358,10 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         array (
             0 => __DIR__ . '/..' . '/google/auth/src',
         ),
+        'FontLib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
+        ),
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
@@ -351,6 +373,10 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         'Embed\\' => 
         array (
             0 => __DIR__ . '/..' . '/embed/embed/src',
+        ),
+        'Drupal\\social\\Behat\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/profiles/contrib/social/tests/behat/features/bootstrap',
         ),
         'Drupal\\Driver\\' => 
         array (
