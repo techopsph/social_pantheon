@@ -1,6 +1,8 @@
-# Drops 8 - Open Social #
+# Open Social on Pantheon #
 
-Note: The repo exposes the composer.json file as well as the /vendor directory of your project. To convert to a nested docroot project, follow the following steps here:
+This is the Open Social repo use for a no-CI based project. 
+
+The repo exposes the composer.json file as well as the /vendor directory of your project. To convert to a nested docroot project, follow the following steps here:
 
 https://pantheon.io/docs/nested-docroot/
 
