@@ -1,4 +1,4 @@
-#Drops 8 - Open Social#
+# Drops 8 - Open Social #
 
 Note: The repo exposes the composer.json file as well as the /vendor directory of your project. To convert to a nested docroot project, follow the following steps here:
 
