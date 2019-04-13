@@ -23,7 +23,7 @@
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://console.cloud.google.com/apis/api/cloudasset.googleapis.com/overview" target="_blank">Documentation</a>
+ * <a href="https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/quickstart-cloud-asset-inventory" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -86,20 +86,20 @@ class Google_Service_CloudAsset extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'readTimeWindow.endTime' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'readTimeWindow.startTime' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'assetNames' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
                 ),
                 'contentType' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'readTimeWindow.endTime' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'readTimeWindow.startTime' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
