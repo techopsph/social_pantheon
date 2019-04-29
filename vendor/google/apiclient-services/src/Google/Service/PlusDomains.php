@@ -36,7 +36,7 @@ class Google_Service_PlusDomains extends Google_Service
   /** View your basic profile info, including your age range and language. */
   const PLUS_LOGIN =
       "https://www.googleapis.com/auth/plus.login";
-  /** Know who you are on Google. */
+  /** Associate you with your personal info on Google. */
   const PLUS_ME =
       "https://www.googleapis.com/auth/plus.me";
   /** Send your photos and videos to Google+. */
@@ -295,24 +295,6 @@ class Google_Service_PlusDomains extends Google_Service
                   'required' => true,
                 ),
                 'collection' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'listByCircle' => array(
-              'path' => 'circles/{circleId}/people',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'circleId' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,

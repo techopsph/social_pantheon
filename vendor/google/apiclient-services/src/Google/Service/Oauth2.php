@@ -30,7 +30,7 @@
  */
 class Google_Service_Oauth2 extends Google_Service
 {
-  /** Know who you are on Google. */
+  /** Associate you with your personal info on Google. */
   const PLUS_ME =
       "https://www.googleapis.com/auth/plus.me";
   /** View your email address. */
