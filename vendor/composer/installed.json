@@ -2874,7 +2874,8 @@
                 "Add computed field for Group reference": "https://www.drupal.org/files/issues/add-computed-field-without-FieldItemListComputedInterface-2718195-34.patch",
                 "Add permission to view group overview": "https://www.drupal.org/files/issues/group-2943564-2.patch",
                 "Use VBO together with group permission": "https://www.drupal.org/files/issues/2018-12-18/vbo-and-group-permission-3020883-5.patch",
-                "Ability to use group tokens in node context": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch"
+                "Ability to use group tokens in node context": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch",
+                "group_type and content_plugin of group_content_type are translatable": "https://www.drupal.org/files/issues/2019-05-14/group-content_schema-3054534-2-D8.patch"
             }
         },
         "installation-source": "dist",
@@ -3252,6 +3253,9 @@
                     "status": "not-covered",
                     "message": "RC releases are not covered by Drupal security advisories."
                 }
+            },
+            "patches_applied": {
+                "Notice: Undefined index: value in MessageTemplate->getText()": "https://www.drupal.org/files/issues/2018-09-16/undefined-index-value-3000026-2.patch"
             }
         },
         "installation-source": "dist",
