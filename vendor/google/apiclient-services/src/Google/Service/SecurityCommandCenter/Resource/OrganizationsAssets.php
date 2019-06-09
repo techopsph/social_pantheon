@@ -111,14 +111,15 @@ class Google_Service_SecurityCommandCenter_Resource_OrganizationsAssets extends 
    * * string literals in quotes. * integer literals without quotes. * boolean
    * literals `true` and `false` without quotes.
    *
-   * The following are the allowed field and operator combinations: name | `=`
-   * update_time | `>`, `<`, `>=`, `<=` iam_policy.policy_blob | '=', ':'
-   * resource_properties | '=', ':', `>`, `<`, `>=`, `<=` security_marks | '=',
-   * ':' security_center_properties.resource_name | '=', ':'
-   * security_center_properties.resource_type | '=', ':'
-   * security_center_properties.resource_parent | '=', ':'
-   * security_center_properties.resource_project | '=', ':'
-   * security_center_properties.resource_owners | '=', ':'
+   * The following are the allowed field and operator combinations:
+   *
+   * * name: `=` * update_time: `>`, `<`, `>=`, `<=` * iam_policy.policy_blob:
+   * `=`, `:` * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=` *
+   * security_marks: `=`, `:` * security_center_properties.resource_name: `=`, `:`
+   * * security_center_properties.resource_type: `=`, `:` *
+   * security_center_properties.resource_parent: `=`, `:` *
+   * security_center_properties.resource_project: `=`, `:` *
+   * security_center_properties.resource_owners: `=`, `:`
    *
    * For example, `resource_properties.size = 100` is a valid filter string.
    * @opt_param string pageToken The value returned by the last
@@ -167,14 +168,14 @@ class Google_Service_SecurityCommandCenter_Resource_OrganizationsAssets extends 
    * @param Google_Service_SecurityCommandCenter_SecurityMarks $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string startTime The time at which the updated SecurityMarks take
+   * effect. If not set uses current server time.  Updates will be applied to the
+   * SecurityMarks that are active immediately preceding this time.
    * @opt_param string updateMask The FieldMask to use when updating the security
    * marks resource.
    *
    * The field mask must not contain duplicate fields. If empty or set to "marks",
    * all marks will be replaced.  Individual marks can be updated using "marks.".
-   * @opt_param string startTime The time at which the updated SecurityMarks take
-   * effect. If not set uses current server time.  Updates will be applied to the
-   * SecurityMarks that are active immediately preceding this time.
    * @return Google_Service_SecurityCommandCenter_SecurityMarks
    */
   public function updateSecurityMarks($name, Google_Service_SecurityCommandCenter_SecurityMarks $postBody, $optParams = array())
