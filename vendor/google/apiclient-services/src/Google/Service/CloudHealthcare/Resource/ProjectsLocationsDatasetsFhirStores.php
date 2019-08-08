@@ -115,19 +115,17 @@ class Google_Service_CloudHealthcare_Resource_ProjectsLocationsDatasetsFhirStore
     return $this->call('get', array($params), "Google_Service_CloudHealthcare_FhirStore");
   }
   /**
-   * Gets the access control policy for a FHIR store or security label within a
-   * FHIR store. Returns NOT_FOUND error if the resource does not exist. Returns
-   * an empty policy if the resource exists but does not have a policy set.
-   *
-   * Authorization requires the Google IAM permission
-   * 'healthcare.fhirStores.getIamPolicy' for a FHIR store or
-   * 'healthcare.securityLabels.getIamPolicy' for a security label
-   * (fhirStores.getIamPolicy)
+   * Gets the access control policy for a resource. Returns an empty policy if the
+   * resource exists and does not have a policy set. (fhirStores.getIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
    * requested. See the operation documentation for the appropriate value for this
    * field.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param int options.requestedPolicyVersion Optional. The policy format
+   * version to be returned. Acceptable values are 0 and 1. If the value is 0, or
+   * the field is omitted, policy format version 1 will be returned.
    * @return Google_Service_CloudHealthcare_Policy
    */
   public function getIamPolicy($resource, $optParams = array())
@@ -216,13 +214,8 @@ class Google_Service_CloudHealthcare_Resource_ProjectsLocationsDatasetsFhirStore
     return $this->call('patch', array($params), "Google_Service_CloudHealthcare_FhirStore");
   }
   /**
-   * Sets the access control policy for a FHIR store or security label within a
-   * FHIR store. Replaces any existing policy.
-   *
-   * Authorization requires the Google IAM permission
-   * 'healthcare.fhirStores.setIamPolicy' for a FHIR store or
-   * 'healthcare.securityLabels.setIamPolicy' for a security label
-   * (fhirStores.setIamPolicy)
+   * Sets the access control policy on the specified resource. Replaces any
+   * existing policy. (fhirStores.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
    * specified. See the operation documentation for the appropriate value for this
@@ -238,12 +231,13 @@ class Google_Service_CloudHealthcare_Resource_ProjectsLocationsDatasetsFhirStore
     return $this->call('setIamPolicy', array($params), "Google_Service_CloudHealthcare_Policy");
   }
   /**
-   * Returns permissions that a caller has on the specified resource.  If the
+   * Returns permissions that a caller has on the specified resource. If the
    * resource does not exist, this will return an empty set of permissions, not a
    * NOT_FOUND error.
    *
-   * There is no permission required to make this API call.
-   * (fhirStores.testIamPermissions)
+   * Note: This operation is designed to be used for building permission-aware UIs
+   * and command-line tools, not for authorization checking. This operation may
+   * "fail open" without warning. (fhirStores.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
    * being requested. See the operation documentation for the appropriate value
