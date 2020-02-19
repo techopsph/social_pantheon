@@ -145,16 +145,6 @@ class Google_Service_Storagetransfer extends Google_Service
                   'required' => true,
                 ),
               ),
-            ),'delete' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),'get' => array(
               'path' => 'v1/{+name}',
               'httpMethod' => 'GET',

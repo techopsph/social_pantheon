@@ -1,5 +1,5 @@
 /*!
- * Font Awesome Free 5.12.0-2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.12.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 .fa,
@@ -760,7 +760,7 @@ readers do not read off random characters that represent icons */
   content: "\f5e4"; }
 
 .fa-caravan:before {
-  content: "\f8e9"; }
+  content: "\f8ff"; }
 
 .fa-caret-down:before {
   content: "\f0d7"; }
@@ -1203,6 +1203,9 @@ readers do not read off random characters that represent icons */
 .fa-d-and-d-beyond:before {
   content: "\f6ca"; }
 
+.fa-dailymotion:before {
+  content: "\f952"; }
+
 .fa-dashcube:before {
   content: "\f210"; }
 
@@ -1642,7 +1645,7 @@ readers do not read off random characters that represent icons */
   content: "\f269"; }
 
 .fa-firefox-browser:before {
-  content: "\f8ea"; }
+  content: "\f907"; }
 
 .fa-first-aid:before {
   content: "\f479"; }
@@ -2209,7 +2212,7 @@ readers do not read off random characters that represent icons */
   content: "\f47f"; }
 
 .fa-ideal:before {
-  content: "\f8eb"; }
+  content: "\f913"; }
 
 .fa-igloo:before {
   content: "\f7ae"; }
@@ -2243,6 +2246,9 @@ readers do not read off random characters that represent icons */
 
 .fa-instagram:before {
   content: "\f16d"; }
+
+.fa-instagram-square:before {
+  content: "\f955"; }
 
 .fa-intercom:before {
   content: "\f7af"; }
@@ -2602,7 +2608,7 @@ readers do not read off random characters that represent icons */
   content: "\f753"; }
 
 .fa-microblog:before {
-  content: "\f8ec"; }
+  content: "\f91a"; }
 
 .fa-microchip:before {
   content: "\f2db"; }
@@ -2642,6 +2648,9 @@ readers do not read off random characters that represent icons */
 
 .fa-mixcloud:before {
   content: "\f289"; }
+
+.fa-mixer:before {
+  content: "\f956"; }
 
 .fa-mizuni:before {
   content: "\f3cc"; }
@@ -2944,7 +2953,7 @@ readers do not read off random characters that represent icons */
   content: "\f1a7"; }
 
 .fa-pied-piper-square:before {
-  content: "\f8ed"; }
+  content: "\f91e"; }
 
 .fa-piggy-bank:before {
   content: "\f4d3"; }
@@ -3347,6 +3356,9 @@ readers do not read off random characters that represent icons */
 
 .fa-shoe-prints:before {
   content: "\f54b"; }
+
+.fa-shopify:before {
+  content: "\f957"; }
 
 .fa-shopping-bag:before {
   content: "\f290"; }
@@ -3919,7 +3931,7 @@ readers do not read off random characters that represent icons */
   content: "\f637"; }
 
 .fa-trailer:before {
-  content: "\f8ee"; }
+  content: "\f941"; }
 
 .fa-train:before {
   content: "\f238"; }
@@ -4030,7 +4042,7 @@ readers do not read off random characters that represent icons */
   content: "\f404"; }
 
 .fa-unity:before {
-  content: "\f8ef"; }
+  content: "\f949"; }
 
 .fa-universal-access:before {
   content: "\f29a"; }
