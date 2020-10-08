@@ -229,6 +229,11 @@ blockquote {
   box-shadow: 0 2px 0 0 $brand-primary;
 }
 
+#skip-link a {
+  background-color: $navbar-default-link-active-bg;
+  color: $navbar-default-link-active-color;
+}
+
 .navbar-secondary {
   color: #f9f9f9;
   background-color: #1f7ea7;
@@ -303,6 +308,21 @@ blockquote {
       }
     }
 
+    li > ul > li.expanded {
+      > .dropdown-menu {
+        @include for-tablet-landscape-down {
+          background-color: $navbar-default-link-active-bg;
+
+          > li {
+            &:focus,
+            &:hover,
+            &.active {
+              background: $navbar-default-bg;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -325,14 +345,16 @@ html:not(.js) .navbar-default {
 }
 
 .dropdown {
-  &.has-alert {
-    > a {
-      @include for-phone-only {
-        &:before {
-          background-color: $brand-accent;
-        }
-      }
+  @include for-phone-only {
+    &.has-alert > a:before {
+      background-color: $brand-accent;
     }
+  }
+
+  // There are now items that don't have their own top level icon so these
+  // should show notifications in the user menu also on desktop.
+  &.has-alert.has-alert--desktop > a:before {
+    background-color: $brand-accent;
   }
 }
 
@@ -609,5 +631,22 @@ html:not(.js) .navbar-default {
 .teaser--tile.teaser-profile {
   .teaser__image {
     background-color: $brand-primary;
+  }
+}
+
+.email-preview {
+  .btn-link-bg {
+    background: $brand-primary;
+  }
+
+  .btn-link {
+    border-color: $brand-primary;
+    color: $brand-primary;
+  }
+
+  .main {
+    a:not(.btn-link) {
+      color: $brand-primary;
+    }
   }
 }

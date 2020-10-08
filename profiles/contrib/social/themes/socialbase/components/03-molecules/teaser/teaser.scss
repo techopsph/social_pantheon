@@ -103,7 +103,7 @@
 .teaser__title {
   margin-top: 0;
   margin-bottom: 20px;
-  max-height: 2.5em;
+  max-height: 2.3em;
   overflow: hidden;
 }
 
@@ -113,6 +113,11 @@
   display: flex;
   overflow: hidden; // makes sure content doesn't continue outside of teaser
   flex-direction: column;
+
+  @include for-phone-only {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 
 // Content of the teaser

@@ -12,6 +12,7 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
@@ -71,6 +72,7 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
             'Symfony\\Polyfill\\Php70\\' => 23,
             'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
             'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
             'Symfony\\Polyfill\\Iconv\\' => 23,
             'Symfony\\Polyfill\\Ctype\\' => 23,
@@ -109,6 +111,7 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         ),
         'L' => 
         array (
+            'LinkedIn\\' => 9,
             'League\\Csv\\' => 11,
         ),
         'H' => 
@@ -119,7 +122,6 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
             'Http\\Client\\Curl\\' => 17,
             'Http\\Client\\' => 12,
             'Html2Text\\' => 10,
-            'Happyr\\LinkedIn\\' => 16,
         ),
         'G' => 
         array (
@@ -156,6 +158,7 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         array (
             'Composer\\Semver\\' => 16,
             'Composer\\Installers\\' => 20,
+            'Composer\\CaBundle\\' => 18,
             'CommerceGuys\\Addressing\\' => 24,
             'Clue\\StreamFilter\\' => 18,
         ),
@@ -226,6 +229,10 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Intl\\Normalizer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer',
         ),
         'Symfony\\Polyfill\\Intl\\Idn\\' => 
         array (
@@ -331,6 +338,10 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
         ),
+        'LinkedIn\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zoonman/linkedin-api-php-client/src',
+        ),
         'League\\Csv\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/csv/src',
@@ -360,10 +371,6 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         array (
             0 => __DIR__ . '/..' . '/html2text/html2text/src',
             1 => __DIR__ . '/..' . '/html2text/html2text/test',
-        ),
-        'Happyr\\LinkedIn\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/happyr/linkedin-api-client/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -399,7 +406,7 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         ),
         'Egulias\\EmailValidator\\' => 
         array (
-            0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
+            0 => __DIR__ . '/..' . '/egulias/email-validator/src',
         ),
         'Drupal\\social\\Behat\\' => 
         array (
@@ -448,6 +455,10 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
+        ),
+        'Composer\\CaBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
         'CommerceGuys\\Addressing\\' => 
         array (
@@ -545,6 +556,7 @@ class ComposerStaticInit4a68a9bae2acc59fc5cbca292e4ca040
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'Google_Service_Exception' => __DIR__ . '/..' . '/google/apiclient/src/Google/Service/Exception.php',
         'Google_Service_Resource' => __DIR__ . '/..' . '/google/apiclient/src/Google/Service/Resource.php',
+        'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PEAR_Exception' => __DIR__ . '/..' . '/pear/pear_exception/PEAR/Exception.php',
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'SessionUpdateTimestampHandlerInterface' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
