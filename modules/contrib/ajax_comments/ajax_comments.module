@@ -48,21 +48,30 @@ function ajax_comments_entity_view_mode_alter(&$view_mode, Drupal\Core\Entity\En
         ->getStorage('entity_view_display')
         ->load($entity->getEntityTypeId() . '.' . $entity->bundle() . '.' . $view_mode);
 
+      // if the view display is empty fall back to the default mode.
+      $acting_view_mode = $view_mode;
+      if (empty($view_display)) {
+        $acting_view_mode = 'default';
+        $view_display = \Drupal::service('entity_type.manager')
+          ->getStorage('entity_view_display')
+          ->load($entity->getEntityTypeId() . '.' . $entity->bundle() . '.' . $acting_view_mode);
+      }
       if (empty($view_display)) {
         continue;
       }
-      $comment_formatter = $field_settings_helper->getFieldFormatter($view_display, $nodeField->getName(), $nodeField, $view_mode);
+      $comment_formatter = $field_settings_helper->getFieldFormatter($view_display, $nodeField->getName(), $nodeField, $acting_view_mode);
 
       if (!empty($comment_formatter) && $field_settings_helper->isEnabled($comment_formatter)) {
         /** @var \Drupal\ajax_comments\TempStore $tempStore */
         $tempStore = \Drupal::service('ajax_comments.temp_store');
 
-        $tempStore->setViewMode($entity->getEntityType()->getLabel(), $view_mode);
+        $tempStore->setViewMode($entity->getEntityType()->getLabel()->getUntranslatedString(), $acting_view_mode);
       }
     }
   }
 
 }
+
 
 /**
  * Implements hook_comment_links_alter().
@@ -71,17 +80,15 @@ function ajax_comments_entity_view_mode_alter(&$view_mode, Drupal\Core\Entity\En
  * classes to allow ajax behaviors to be attached.
  */
 function ajax_comments_comment_links_alter(array &$links, CommentInterface &$entity, array &$context) {
-
   /** @var \Drupal\ajax_comments\TempStore $tempStore */
   $tempStore = \Drupal::service('ajax_comments.temp_store');
-  $view_mode = $tempStore->getViewMode($entity->getCommentedEntity()->getEntityType()->getLabel());
+  $view_mode = $tempStore->getViewMode($entity->getCommentedEntity()->getEntityType()->getLabel()->getUntranslatedString());
 
   /** @var \Drupal\ajax_comments\FieldSettingsHelper $field_settings_helper */
   $field_settings_helper = \Drupal::service('ajax_comments.field_settings_helper');
-
   $comment_formatter = $field_settings_helper->getFieldFormatterFromComment($entity, $view_mode);
 
-  if (!empty($comment_formatter) && $field_settings_helper->isEnabled($comment_formatter)) {
+  if ($field_settings_helper->isEnabled($comment_formatter)) {
     // A little HACK for do not mark as NEW own comments.
     if ($entity->isNew() && ($entity->getOwnerId() === \Drupal::currentUser()->id())) {
       $entity->enforceIsNew(FALSE);
@@ -242,6 +249,7 @@ function ajax_comments_entity_view_alter(array &$build, ContentEntityInterface $
           }
           $commands_added = TRUE;
           break;
+
         }
       }
     }
@@ -273,7 +281,7 @@ function ajax_comments_form_comment_form_alter(&$form, \Drupal\Core\Form\FormSta
 
   /** @var \Drupal\ajax_comments\TempStore $tempStore */
   $tempStore = \Drupal::service('ajax_comments.temp_store');
-  $view_mode = $tempStore->getViewMode($commented_entity->getEntityType()->getLabel());
+  $view_mode = $tempStore->getViewMode($commented_entity->getEntityType()->getLabel()->getUntranslatedString());
 
   // Check to see if this node type uses ajax comments.
   $comment_formatter = $field_settings_helper->getFieldFormatterFromComment($comment, $view_mode);
@@ -329,6 +337,7 @@ function _ajax_comments_preview_js($form, FormStateInterface $form_state) {
   $response->addCommand(new AlertCommand($message));
   return $response;
 }
+
 
 /**
  * Implements template_preprocess_pager().

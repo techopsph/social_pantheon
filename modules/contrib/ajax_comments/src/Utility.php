@@ -99,7 +99,7 @@ class Utility {
 
     /** @var \Drupal\ajax_comments\TempStore $tempStore */
     $tempStore = \Drupal::service('ajax_comments.temp_store');
-    $view_mode = $tempStore->getViewMode($commented_entity->getEntityType()->getLabel());
+    $view_mode = $tempStore->getViewMode($commented_entity->getEntityType()->getLabel()->getUntranslatedString());
 
     // Load the early-stage render array for the commented entity.
     $build = \Drupal::entityTypeManager()
@@ -173,7 +173,6 @@ class Utility {
         $wrapper_html_id = $render_array['#attributes']['id'];
       }
     }
-
     // Make sure users can alter the wrapper if necessary.
     \Drupal::moduleHandler()->alter('ajax_comments_wrapper_id', $wrapper_html_id, $commented_entity, $field_name);
 

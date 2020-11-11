@@ -117,7 +117,7 @@ class AjaxCommentsForm extends CommentForm {
 
     /** @var \Drupal\ajax_comments\TempStore $tempStore */
     $tempStore = \Drupal::service('ajax_comments.temp_store');
-    $view_mode = $tempStore->getViewMode($comment->getCommentedEntity()->getEntityType()->getLabel());
+    $view_mode = $tempStore->getViewMode($comment->getCommentedEntity()->getEntityType()->getLabel()->getUntranslatedString());
 
     // Check to see if this comment field uses ajax comments.
     $comment_formatter = $this->fieldSettingsHelper->getFieldFormatterFromComment($comment, $view_mode);
@@ -198,10 +198,9 @@ class AjaxCommentsForm extends CommentForm {
     // Populate the comment-specific variables.
     /** @var \Drupal\comment\CommentInterface $comment */
     $comment = $form_state->getFormObject()->getEntity();
-
-    /** @var \Drupal\ajax_comments\TempStore $tempStore */
+   /** @var \Drupal\ajax_comments\TempStore $tempStore */
     $tempStore = \Drupal::service('ajax_comments.temp_store');
-    $view_mode = $tempStore->getViewMode($comment->getCommentedEntity()->getEntityType()->getLabel());
+    $view_mode = $tempStore->getViewMode($comment->getCommentedEntity()->getEntityType()->getLabel()->getUntranslatedString());
 
     $comment_formatter = $this->fieldSettingsHelper->getFieldFormatterFromComment($comment, $view_mode);
     if (!empty($comment_formatter) && !$this->fieldSettingsHelper->isEnabled($comment_formatter)) {
@@ -386,10 +385,9 @@ class AjaxCommentsForm extends CommentForm {
     parent::save($form, $form_state);
     /** @var \Drupal\comment\CommentInterface $comment */
     $comment = $form_state->getFormObject()->getEntity();
-
     /** @var \Drupal\ajax_comments\TempStore $tempStore */
     $tempStore = \Drupal::service('ajax_comments.temp_store');
-    $view_mode = $tempStore->getViewMode($comment->getCommentedEntity()->getEntityType()->getLabel());
+    $view_mode = $tempStore->getViewMode($comment->getCommentedEntity()->getEntityType()->getLabel()->getUntranslatedString());
 
     $comment_formatter = $this->fieldSettingsHelper->getFieldFormatterFromComment($comment, $view_mode);
     if (!empty($comment_formatter) && !$this->fieldSettingsHelper->isEnabled($comment_formatter)) {
