@@ -253,6 +253,10 @@ function _gin_toolbar_user__get_user_id() {
  * Check user has enabled darkmode helper function.
  */
 function _gin_toolbar_user__overrides_enabled() {
+  if (_gin_toolbar_get_admin_theme_setting('show_user_theme_settings') !== TRUE) {
+    return FALSE;
+  }
+
   $uid = _gin_toolbar_user__get_user_id();
 
   /** @var \Drupal\user\UserDataInterface $userData */
