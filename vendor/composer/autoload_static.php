@@ -630,13 +630,11 @@ class ComposerStaticInitfefdd330014dfc6eae9f158ec2f70b4d
         ),
         'Drupal\\social\\Behat\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/tests/behat/features/bootstrap',
-            1 => __DIR__ . '/../..' . '/web/profiles/contrib/social/tests/behat/features/bootstrap',
+            0 => __DIR__ . '/../..' . '/web/profiles/contrib/social/tests/behat/features/bootstrap',
         ),
         'Drupal\\social\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
-            1 => __DIR__ . '/../..' . '/web/profiles/contrib/social/src',
+            0 => __DIR__ . '/../..' . '/web/profiles/contrib/social/src',
         ),
         'Drupal\\bootstrap\\' => 
         array (
@@ -644,8 +642,7 @@ class ComposerStaticInitfefdd330014dfc6eae9f158ec2f70b4d
         ),
         'Drupal\\Tests\\social\\PHPStan\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/tests/phpstan/src',
-            1 => __DIR__ . '/../..' . '/web/profiles/contrib/social/tests/phpstan/src',
+            0 => __DIR__ . '/../..' . '/web/profiles/contrib/social/tests/phpstan/src',
         ),
         'Drupal\\Core\\' => 
         array (

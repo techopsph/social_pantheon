@@ -75,19 +75,11 @@
         "enable-patching": true
     },
     "autoload": {
-        "classmap": ["upstream-configuration/scripts/ComposerScripts.php"],
-        "psr-4": {
-            "Drupal\\Tests\\social\\PHPStan\\": "tests/phpstan/src",
-            "Drupal\\social\\Behat\\": "tests/behat/features/bootstrap",
-            "Drupal\\social\\": "src"
-        }
+        "classmap": ["upstream-configuration/scripts/ComposerScripts.php"]
     },
     "scripts": {
         "pre-update-cmd": ["DrupalComposerManaged\\ComposerScripts::preUpdate"],
-        "post-update-cmd": ["DrupalComposerManaged\\ComposerScripts::postUpdate"],
-        "post-install-cmd": [
-            "@composer drupal:scaffold"
-        ]
+        "post-update-cmd": ["DrupalComposerManaged\\ComposerScripts::postUpdate"]
     },
     "config": {
         "preferred-install": "dist",
