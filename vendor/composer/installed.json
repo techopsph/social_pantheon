@@ -4029,8 +4029,8 @@
                     }
                 },
                 "patches_applied": {
-                    "Issue #3099176: Errors when new entity types are added (in certain cases)": "https://www.drupal.org/files/issues/2023-09-08/3099176-3.x-16.diff",
-                    "Return the same content list after content type is changed": "https://www.drupal.org/files/issues/2021-08-27/dynamic_entity_reference-the_same_content_list-3230158-2.patch"
+                    "Return the same content list after content type is changed": "https://www.drupal.org/files/issues/2021-08-27/dynamic_entity_reference-the_same_content_list-3230158-2.patch",
+                    "Issue #3099176: Errors when new entity types are added (in certain cases)": "https://www.drupal.org/files/issues/2023-09-08/3099176-3.x-16.diff"
                 }
             },
             "installation-source": "dist",
@@ -8575,7 +8575,7 @@
             "support": {
                 "source": "https://github.com/goalgorilla/open_social/tree/12.0.5"
             },
-            "install-path": "../../web/profiles/contrib/open_social"
+            "install-path": "../../web/profiles/contrib/social"
         },
         {
             "name": "goalgorilla/open_social_upgrade_patches",
@@ -10358,7 +10358,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/autosize"
+            "install-path": "../../web/modules/contrib/autosize"
         },
         {
             "name": "npm-asset/bootstrap",
@@ -10373,7 +10373,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/bootstrap"
+            "install-path": "../../web/modules/contrib/bootstrap"
         },
         {
             "name": "npm-asset/d3",
@@ -10388,7 +10388,7 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "install-path": "../npm-asset/d3"
+            "install-path": "../../web/modules/contrib/d3"
         },
         {
             "name": "npm-asset/diff",
@@ -10403,7 +10403,7 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "install-path": "../npm-asset/diff"
+            "install-path": "../../web/modules/contrib/diff"
         },
         {
             "name": "npm-asset/emoji-picker-element",
@@ -10418,7 +10418,7 @@
             "license": [
                 "Apache-2.0"
             ],
-            "install-path": "../npm-asset/emoji-picker-element"
+            "install-path": "../../web/modules/contrib/emoji-picker-element"
         },
         {
             "name": "npm-asset/eve-raphael",
@@ -10430,7 +10430,7 @@
             },
             "type": "npm-asset",
             "installation-source": "dist",
-            "install-path": "../npm-asset/eve-raphael"
+            "install-path": "../../web/modules/contrib/eve-raphael"
         },
         {
             "name": "npm-asset/fortawesome--fontawesome-free",
@@ -10445,7 +10445,7 @@
             "license": [
                 "(CC-BY-4.0 AND OFL-1.1 AND MIT)"
             ],
-            "install-path": "../npm-asset/fortawesome--fontawesome-free"
+            "install-path": "../../web/modules/contrib/fortawesome--fontawesome-free"
         },
         {
             "name": "npm-asset/javascript-natural-sort",
@@ -10460,7 +10460,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/javascript-natural-sort"
+            "install-path": "../../web/modules/contrib/javascript-natural-sort"
         },
         {
             "name": "npm-asset/jquery",
@@ -10475,7 +10475,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/jquery"
+            "install-path": "../../web/modules/contrib/jquery"
         },
         {
             "name": "npm-asset/jquery-ui-touch-punch",
@@ -10490,7 +10490,7 @@
             "license": [
                 "Dual licensed under the MIT or GPL Version 2 licenses."
             ],
-            "install-path": "../npm-asset/jquery-ui-touch-punch"
+            "install-path": "../../web/modules/contrib/jquery-ui-touch-punch"
         },
         {
             "name": "npm-asset/jquery.caret",
@@ -10505,7 +10505,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/jquery.caret"
+            "install-path": "../../web/modules/contrib/jquery.caret"
         },
         {
             "name": "npm-asset/js-tokens",
@@ -10520,7 +10520,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/js-tokens"
+            "install-path": "../../web/modules/contrib/js-tokens"
         },
         {
             "name": "npm-asset/lazysizes",
@@ -10535,7 +10535,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/lazysizes"
+            "install-path": "../../web/modules/contrib/lazysizes"
         },
         {
             "name": "npm-asset/loose-envify",
@@ -10553,7 +10553,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/loose-envify"
+            "install-path": "../../web/modules/contrib/loose-envify"
         },
         {
             "name": "npm-asset/morris.js06",
@@ -10571,7 +10571,7 @@
             "license": [
                 "BSD-2-Clause"
             ],
-            "install-path": "../npm-asset/morris.js06"
+            "install-path": "../../web/modules/contrib/morris.js06"
         },
         {
             "name": "npm-asset/node-waves",
@@ -10586,7 +10586,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/node-waves"
+            "install-path": "../../web/modules/contrib/node-waves"
         },
         {
             "name": "npm-asset/object-assign",
@@ -10601,7 +10601,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/object-assign"
+            "install-path": "../../web/modules/contrib/object-assign"
         },
         {
             "name": "npm-asset/photoswipe",
@@ -10616,7 +10616,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/photoswipe"
+            "install-path": "../../web/modules/contrib/photoswipe"
         },
         {
             "name": "npm-asset/prop-types",
@@ -10636,7 +10636,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/prop-types"
+            "install-path": "../../web/modules/contrib/prop-types"
         },
         {
             "name": "npm-asset/raphael",
@@ -10654,7 +10654,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/raphael"
+            "install-path": "../../web/modules/contrib/raphael"
         },
         {
             "name": "npm-asset/react",
@@ -10674,7 +10674,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/react"
+            "install-path": "../../web/modules/contrib/react"
         },
         {
             "name": "npm-asset/react-dom",
@@ -10695,7 +10695,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/react-dom"
+            "install-path": "../../web/modules/contrib/react-dom"
         },
         {
             "name": "npm-asset/react-is",
@@ -10713,7 +10713,7 @@
             },
             "type": "npm-asset",
             "installation-source": "dist",
-            "install-path": "../npm-asset/react-is"
+            "install-path": "../../web/modules/contrib/react-is"
         },
         {
             "name": "npm-asset/scheduler",
@@ -10732,7 +10732,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/scheduler"
+            "install-path": "../../web/modules/contrib/scheduler"
         },
         {
             "name": "npm-asset/select2",
@@ -10747,7 +10747,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/select2"
+            "install-path": "../../web/modules/contrib/select2"
         },
         {
             "name": "npm-asset/shariff",
@@ -10766,7 +10766,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/shariff"
+            "install-path": "../../web/modules/contrib/shariff"
         },
         {
             "name": "npm-asset/shoestring",
@@ -10781,7 +10781,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/shoestring"
+            "install-path": "../../web/modules/contrib/shoestring"
         },
         {
             "name": "npm-asset/slick-carousel",
@@ -10796,7 +10796,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/slick-carousel"
+            "install-path": "../../web/modules/contrib/slick-carousel"
         },
         {
             "name": "npm-asset/tablesaw",
@@ -10815,7 +10815,7 @@
             "license": [
                 "MIT"
             ],
-            "install-path": "../npm-asset/tablesaw"
+            "install-path": "../../web/modules/contrib/tablesaw"
         },
         {
             "name": "oomphinc/composer-installers-extender",

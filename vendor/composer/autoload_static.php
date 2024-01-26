@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2d129c3bc33338304409112f5a497c0b
+class ComposerStaticInitfefdd330014dfc6eae9f158ec2f70b4d
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -246,8 +246,8 @@ class ComposerStaticInit2d129c3bc33338304409112f5a497c0b
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'phootwork\\lang\\' => 
         array (
@@ -475,8 +475,8 @@ class ComposerStaticInit2d129c3bc33338304409112f5a497c0b
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -544,8 +544,8 @@ class ComposerStaticInit2d129c3bc33338304409112f5a497c0b
         ),
         'League\\Uri\\' => 
         array (
-            0 => __DIR__ . '/..' . '/league/uri-interfaces',
-            1 => __DIR__ . '/..' . '/league/uri',
+            0 => __DIR__ . '/..' . '/league/uri',
+            1 => __DIR__ . '/..' . '/league/uri-interfaces',
         ),
         'League\\OAuth2\\Server\\' => 
         array (
@@ -631,12 +631,12 @@ class ComposerStaticInit2d129c3bc33338304409112f5a497c0b
         'Drupal\\social\\Behat\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests/behat/features/bootstrap',
-            1 => __DIR__ . '/../..' . '/web/profiles/contrib/open_social/tests/behat/features/bootstrap',
+            1 => __DIR__ . '/../..' . '/web/profiles/contrib/social/tests/behat/features/bootstrap',
         ),
         'Drupal\\social\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
-            1 => __DIR__ . '/../..' . '/web/profiles/contrib/open_social/src',
+            1 => __DIR__ . '/../..' . '/web/profiles/contrib/social/src',
         ),
         'Drupal\\bootstrap\\' => 
         array (
@@ -645,7 +645,7 @@ class ComposerStaticInit2d129c3bc33338304409112f5a497c0b
         'Drupal\\Tests\\social\\PHPStan\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests/phpstan/src',
-            1 => __DIR__ . '/../..' . '/web/profiles/contrib/open_social/tests/phpstan/src',
+            1 => __DIR__ . '/../..' . '/web/profiles/contrib/social/tests/phpstan/src',
         ),
         'Drupal\\Core\\' => 
         array (
@@ -773,8 +773,8 @@ class ComposerStaticInit2d129c3bc33338304409112f5a497c0b
         ),
         'Behat\\Mink\\Driver\\' => 
         array (
-            0 => __DIR__ . '/..' . '/behat/mink-selenium2-driver/src',
-            1 => __DIR__ . '/..' . '/behat/mink-browserkit-driver/src',
+            0 => __DIR__ . '/..' . '/behat/mink-browserkit-driver/src',
+            1 => __DIR__ . '/..' . '/behat/mink-selenium2-driver/src',
         ),
         'Behat\\Mink\\' => 
         array (
@@ -1496,11 +1496,11 @@ class ComposerStaticInit2d129c3bc33338304409112f5a497c0b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2d129c3bc33338304409112f5a497c0b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2d129c3bc33338304409112f5a497c0b::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2d129c3bc33338304409112f5a497c0b::$prefixesPsr0;
-            $loader->fallbackDirsPsr0 = ComposerStaticInit2d129c3bc33338304409112f5a497c0b::$fallbackDirsPsr0;
-            $loader->classMap = ComposerStaticInit2d129c3bc33338304409112f5a497c0b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitfefdd330014dfc6eae9f158ec2f70b4d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitfefdd330014dfc6eae9f158ec2f70b4d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitfefdd330014dfc6eae9f158ec2f70b4d::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInitfefdd330014dfc6eae9f158ec2f70b4d::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInitfefdd330014dfc6eae9f158ec2f70b4d::$classMap;
 
         }, null, ClassLoader::class);
     }
