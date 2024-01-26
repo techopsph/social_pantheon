@@ -13,37 +13,36 @@ declare(strict_types=1);
 
 namespace League\Csv;
 
+use ArrayIterator;
 use IteratorIterator;
 use Traversable;
 
 /**
- * Map value from an iterator before yielding.
+ * Maps value from an iterator before yielding.
  *
  * @internal used internally to modify CSV content
  */
-class MapIterator extends IteratorIterator
+final class MapIterator extends IteratorIterator
 {
-    /**
-     * The callback to apply on all InnerIterator current value.
-     *
-     * @var callable
-     */
-    protected $callable;
+    /** @var callable The callback to apply on all InnerIterator current value. */
+    private $callable;
 
-    /**
-     * New instance.
-     */
     public function __construct(Traversable $iterator, callable $callable)
     {
         parent::__construct($iterator);
         $this->callable = $callable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function current()
+    public static function fromIterable(iterable $iterator, callable $callable): self
     {
-        return ($this->callable)(parent::current(), $this->key());
+        return match (true) {
+            is_array($iterator) => new self(new ArrayIterator($iterator), $callable),
+            default => new self($iterator, $callable),
+        };
+    }
+
+    public function current(): mixed
+    {
+        return ($this->callable)(parent::current(), parent::key());
     }
 }

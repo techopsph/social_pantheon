@@ -17,73 +17,69 @@ use ArrayIterator;
 use CallbackFilterIterator;
 use Iterator;
 use LimitIterator;
+
 use function array_reduce;
-use function iterator_to_array;
+
+use const E_USER_DEPRECATED;
 
 /**
- * Criteria to filter a {@link Reader} object.
+ * Criteria to filter a {@link TabularDataReader} object.
  */
 class Statement
 {
-    /**
-     * Callables to filter the iterator.
-     *
-     * @var callable[]
-     */
-    protected $where = [];
+    /** @var array<callable> Callables to filter the iterator. */
+    protected array $where = [];
+    /** @var array<callable> Callables to sort the iterator. */
+    protected array $order_by = [];
+    /** iterator Offset. */
+    protected int $offset = 0;
+    /** iterator maximum length. */
+    protected int $limit = -1;
 
     /**
-     * Callables to sort the iterator.
-     *
-     * @var callable[]
+     * @throws Exception
      */
-    protected $order_by = [];
+    public static function create(callable $where = null, int $offset = 0, int $limit = -1): self
+    {
+        $stmt = new self();
+        if (null !== $where) {
+            $stmt = $stmt->where($where);
+        }
+
+        return $stmt->offset($offset)->limit($limit);
+    }
 
     /**
-     * iterator Offset.
-     *
-     * @var int
+     * Sets the Iterator filter method.
      */
-    protected $offset = 0;
-
-    /**
-     * iterator maximum length.
-     *
-     * @var int
-     */
-    protected $limit = -1;
-
-    /**
-     * Set the Iterator filter method.
-     */
-    public function where(callable $callable): self
+    public function where(callable $where): self
     {
         $clone = clone $this;
-        $clone->where[] = $callable;
+        $clone->where[] = $where;
 
         return $clone;
     }
 
     /**
-     * Set an Iterator sorting callable function.
+     * Sets an Iterator sorting callable function.
      */
-    public function orderBy(callable $callable): self
+    public function orderBy(callable $order_by): self
     {
         $clone = clone $this;
-        $clone->order_by[] = $callable;
+        $clone->order_by[] = $order_by;
 
         return $clone;
     }
 
     /**
-     * Set LimitIterator Offset.
+     * Sets LimitIterator Offset.
      *
-     * @throws Exception if the offset is lesser than 0
+     * @throws Exception if the offset is less than 0
      */
     public function offset(int $offset): self
     {
         if (0 > $offset) {
-            throw new InvalidArgument(sprintf('%s() expects the offset to be a positive integer or 0, %s given', __METHOD__, $offset));
+            throw InvalidArgument::dueToInvalidRecordOffset($offset, __METHOD__);
         }
 
         if ($offset === $this->offset) {
@@ -97,14 +93,14 @@ class Statement
     }
 
     /**
-     * Set LimitIterator Count.
+     * Sets LimitIterator Count.
      *
-     * @throws Exception if the limit is lesser than -1
+     * @throws Exception if the limit is less than -1
      */
     public function limit(int $limit): self
     {
         if (-1 > $limit) {
-            throw new InvalidArgument(sprintf('%s() expects the limit to be greater or equal to -1, %s given', __METHOD__, $limit));
+            throw InvalidArgument::dueToInvalidLimit($limit, __METHOD__);
         }
 
         if ($limit === $this->limit) {
@@ -118,20 +114,29 @@ class Statement
     }
 
     /**
-     * Execute the prepared Statement on the {@link Reader} object.
+     * Executes the prepared Statement on the {@link Reader} object.
      *
-     * @param string[] $header an optional header to use instead of the CSV document header
+     * @param array<string> $header an optional header to use instead of the CSV document header
+     *
+     * @throws SyntaxError
      */
-    public function process(Reader $csv, array $header = []): ResultSet
+    public function process(TabularDataReader $tabular_data, array $header = []): TabularDataReader
     {
-        if ([] === $header) {
-            $header = $csv->getHeader();
+        if ([] !== $header) {
+            @trigger_error('Since league\csv 9.12.0: the $header argument is deprecated and will be removed in the next major release; Please use getRecords on the returned TabularDataReader', E_USER_DEPRECATED);
         }
 
-        $iterator = array_reduce($this->where, [$this, 'filter'], $csv->getRecords($header));
-        $iterator = $this->buildOrderBy($iterator);
+        if ([] === $header) {
+            $header = $tabular_data->getHeader();
+        }
 
-        return new ResultSet(new LimitIterator($iterator, $this->offset, $this->limit), $header);
+        $iterator = $this->buildOrderBy(
+            array_reduce($this->where, $this->filter(...), $tabular_data->getRecords($header))
+        );
+        /** @var Iterator<array-key, array<array-key, string|null>> $iterator */
+        $iterator = new LimitIterator($iterator, $this->offset, $this->limit);
+
+        return new ResultSet($iterator, $header);
     }
 
     /**
@@ -143,7 +148,7 @@ class Statement
     }
 
     /**
-     * Sort the Iterator.
+     * Sorts the Iterator.
      */
     protected function buildOrderBy(Iterator $iterator): Iterator
     {
@@ -161,9 +166,10 @@ class Statement
             return $cmp ?? 0;
         };
 
-        $iterator = new ArrayIterator(iterator_to_array($iterator));
-        $iterator->uasort($compare);
+        /** @var ArrayIterator<array-key, array<string|null>> $it */
+        $it = new ArrayIterator([...$iterator]);
+        $it->uasort($compare);
 
-        return $iterator;
+        return $it;
     }
 }

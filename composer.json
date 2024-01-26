@@ -1,25 +1,8 @@
 {
-    "name": "goalgorilla/social_template",
-    "description": "Social project template for composer based Open Social projects.",
+    "name": "pantheon-upstreams/drupal-composer-managed",
+    "description": "Install Drupal 9 with Composer on Pantheon.",
     "type": "project",
-    "license": "GPL-2.0+",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "config": {
-        "platform": {
-            "php": "7.1"
-        }
-    },
-    "require": {
-        "composer/installers": "^1.0",
-        "drupal-composer/drupal-scaffold": "^2.0.0",
-        "cweagans/composer-patches": "^1.0",
-        "goalgorilla/open_social": "^9.0",
-        "doctrine/cache": "1.6.1",
-        "doctrine/collections": "1.4.0",
-        "doctrine/common": "2.7.2",
-        "doctrine/inflector": "1.1.0"
-    },
+    "license": "MIT",
     "repositories": [
         {
             "type": "composer",
@@ -28,46 +11,88 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "path",
+            "url": "upstream-configuration"
         }
     ],
-    "scripts": {
-      "post-install-cmd": [
-        "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
-      ],
-      "post-update-cmd": [
-        "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
-      ]
+    "require": {
+        "pantheon-upstreams/upstream-configuration": "dev-main",
+        "composer/installers": "^1.9",
+        "drupal/core-composer-scaffold": "^10",
+        "drupal/core-recommended": "^10",
+        "pantheon-systems/drupal-integrations": "^10",
+        "cweagans/composer-patches": "^1.7",
+        "drush/drush": "^11 || ^12",
+        "goalgorilla/open_social": "^12.0.5"
     },
+    "require-dev": {
+        "drupal/core-dev": "^10"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
-        "installer-types": [
-            "bower-asset",
-            "npm-asset"
-        ],
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "./web"
+            },
+            "allowed-packages": ["pantheon-systems/drupal-integrations"],
+            "file-mapping": {
+                "[project-root]/.editorconfig": false,
+                "[project-root]/pantheon.upstream.yml": false,
+                "[project-root]/.gitattributes": false
+            }
+        },
         "installer-paths": {
-            "core": [
-                "drupal/core"
-            ],
-            "modules/contrib/{$name}": [
-                "type:drupal-module"
-            ],
-            "profiles/contrib/social": [
-                "goalgorilla/open_social"
-            ],
-            "profiles/contrib/{$name}": [
-                "type:drupal-profile"
-            ],
-            "themes/contrib/{$name}": [
-                "type:drupal-theme"
-            ],
-            "libraries/{$name}": [
-                "type:drupal-library",
-                "type:bower-asset",
-                "type:npm-asset"
-            ],
-            "drush/contrib/{$name}": [
-                "type:drupal-drush"
-            ]
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
+            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
+            "web/profiles/custom/{$name}": ["type:drupal-custom-profile"],
+            "web/themes/custom/{$name}": ["type:drupal-custom-theme"],
+            "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
+        },
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
         },
         "enable-patching": true
+    },
+    "autoload": {
+        "classmap": ["upstream-configuration/scripts/ComposerScripts.php"],
+        "psr-4": {
+            "Drupal\\Tests\\social\\PHPStan\\": "tests/phpstan/src",
+            "Drupal\\social\\Behat\\": "tests/behat/features/bootstrap",
+            "Drupal\\social\\": "src"
+        }
+    },
+    "scripts": {
+        "pre-update-cmd": ["DrupalComposerManaged\\ComposerScripts::preUpdate"],
+        "post-update-cmd": ["DrupalComposerManaged\\ComposerScripts::postUpdate"],
+        "post-install-cmd": [
+            "@composer drupal:scaffold"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": false,
+        "platform": {
+            "php": "8.2.0"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true,
+            "oomphinc/composer-installers-extender": true
+        }
     }
 }

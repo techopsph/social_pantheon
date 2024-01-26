@@ -1,6 +1,0 @@
-services:
-  social_embed.overrider:
-    class: \Drupal\social_embed\SocialEmbedConfigOverride
-    arguments: ['@module_handler', '@config.factory']
-    tags:
-      - {name: config.factory.override, priority: 50}

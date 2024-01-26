@@ -2,8 +2,32 @@
 
 namespace Embed\Providers\OEmbed;
 
-class Vimeo extends EndPoint implements EndPointInterface
+use Embed\Url;
+
+class Vimeo extends OEmbedImplementation
 {
-    protected static $pattern = ['vimeo.com/*'];
-    protected static $endPoint = 'https://vimeo.com/api/oembed.json';
+
+  /**
+   * @inheritDoc
+   */
+  public static function getEndPoint(Url $url) {
+    return 'https://vimeo.com/api/oembed.json';
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public static function getPatterns() {
+    return [
+      'https?://*.vimeo.com*',
+      'https?://vimeo.com*',
+    ];
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public static function getParams(Url $url) {
+    return ['url' => $url->withScheme('http')->getUrl()];
+  }
 }

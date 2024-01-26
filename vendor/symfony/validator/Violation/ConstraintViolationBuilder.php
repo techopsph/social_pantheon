@@ -11,11 +11,11 @@
 
 namespace Symfony\Component\Validator\Violation;
 
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Util\PropertyPath;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Default implementation of {@link ConstraintViolationBuilderInterface}.
@@ -26,119 +26,88 @@ use Symfony\Component\Validator\Util\PropertyPath;
  */
 class ConstraintViolationBuilder implements ConstraintViolationBuilderInterface
 {
-    private $violations;
-    private $message;
-    private $parameters;
-    private $root;
-    private $invalidValue;
-    private $propertyPath;
-    private $translator;
-    private $translationDomain;
-    private $plural;
-    private $constraint;
-    private $code;
+    private ConstraintViolationList $violations;
+    private string|\Stringable $message;
+    private array $parameters;
+    private mixed $root;
+    private mixed $invalidValue;
+    private string $propertyPath;
+    private TranslatorInterface $translator;
+    private ?string $translationDomain;
+    private ?int $plural = null;
+    private ?Constraint $constraint;
+    private ?string $code = null;
+    private mixed $cause = null;
 
-    /**
-     * @var mixed
-     */
-    private $cause;
-
-    public function __construct(ConstraintViolationList $violations, Constraint $constraint, $message, array $parameters, $root, $propertyPath, $invalidValue, TranslatorInterface $translator, $translationDomain = null)
+    public function __construct(ConstraintViolationList $violations, ?Constraint $constraint, string|\Stringable $message, array $parameters, mixed $root, ?string $propertyPath, mixed $invalidValue, TranslatorInterface $translator, string $translationDomain = null)
     {
         $this->violations = $violations;
         $this->message = $message;
         $this->parameters = $parameters;
         $this->root = $root;
-        $this->propertyPath = $propertyPath;
+        $this->propertyPath = $propertyPath ?? '';
         $this->invalidValue = $invalidValue;
         $this->translator = $translator;
         $this->translationDomain = $translationDomain;
         $this->constraint = $constraint;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function atPath($path)
+    public function atPath(string $path): static
     {
         $this->propertyPath = PropertyPath::append($this->propertyPath, $path);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setParameter($key, $value)
+    public function setParameter(string $key, string $value): static
     {
         $this->parameters[$key] = $value;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setParameters(array $parameters)
+    public function setParameters(array $parameters): static
     {
         $this->parameters = $parameters;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setTranslationDomain($translationDomain)
+    public function setTranslationDomain(string $translationDomain): static
     {
         $this->translationDomain = $translationDomain;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setInvalidValue($invalidValue)
+    public function setInvalidValue(mixed $invalidValue): static
     {
         $this->invalidValue = $invalidValue;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setPlural($number)
+    public function setPlural(int $number): static
     {
         $this->plural = $number;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setCode($code)
+    public function setCode(?string $code): static
     {
         $this->code = $code;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setCause($cause)
+    public function setCause(mixed $cause): static
     {
         $this->cause = $cause;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addViolation()
     {
         if (null === $this->plural) {
@@ -148,20 +117,11 @@ class ConstraintViolationBuilder implements ConstraintViolationBuilderInterface
                 $this->translationDomain
             );
         } else {
-            try {
-                $translatedMessage = $this->translator->transChoice(
-                    $this->message,
-                    $this->plural,
-                    $this->parameters,
-                    $this->translationDomain
-                );
-            } catch (\InvalidArgumentException $e) {
-                $translatedMessage = $this->translator->trans(
-                    $this->message,
-                    $this->parameters,
-                    $this->translationDomain
-                );
-            }
+            $translatedMessage = $this->translator->trans(
+                $this->message,
+                ['%count%' => $this->plural] + $this->parameters,
+                $this->translationDomain
+            );
         }
 
         $this->violations->add(new ConstraintViolation(

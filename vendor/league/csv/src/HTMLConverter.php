@@ -16,7 +16,7 @@ namespace League\Csv;
 use DOMDocument;
 use DOMElement;
 use DOMException;
-use Traversable;
+
 use function preg_match;
 
 /**
@@ -24,31 +24,27 @@ use function preg_match;
  */
 class HTMLConverter
 {
+    /** table class attribute value. */
+    protected string $class_name = 'table-csv-data';
+    /** table id attribute value. */
+    protected string $id_value = '';
+    protected XMLConverter $xml_converter;
+
+    public static function create(): self
+    {
+        return new self();
+    }
+
     /**
-     * table class attribute value.
+     * DEPRECATION WARNING! This method will be removed in the next major point release.
      *
-     * @var string
-     */
-    protected $class_name = 'table-csv-data';
-
-    /**
-     * table id attribute value.
-     *
-     * @var string
-     */
-    protected $id_value = '';
-
-    /**
-     * @var XMLConverter
-     */
-    protected $xml_converter;
-
-    /**
-     * New Instance.
+     * @throws DOMException
+     * @see HTMLConverterTest::create()
+     * @deprecated since version 9.7.0
      */
     public function __construct()
     {
-        $this->xml_converter = (new XMLConverter())
+        $this->xml_converter = XMLConverter::create()
             ->rootElement('table')
             ->recordElement('tr')
             ->fieldElement('td')
@@ -56,13 +52,12 @@ class HTMLConverter
     }
 
     /**
-     * Converts a tabular data collection into a HTML table string.
+     * Converts a tabular data collection into an HTML table string.
      *
-     * @param array|Traversable $records       The tabular data collection
-     * @param string[]          $header_record An optional array of headers outputted using the`<thead>` section
-     * @param string[]          $footer_record An optional array of footers to output to the table using `<tfoot>` and `<th>` elements
+     * @param array<string> $header_record An optional array of headers outputted using the `<thead>` and `<th>` elements
+     * @param array<string> $footer_record An optional array of footers outputted using the `<tfoot>` and `<th>` elements
      */
-    public function convert($records, array $header_record = [], array $footer_record = []): string
+    public function convert(iterable $records, array $header_record = [], array $footer_record = []): string
     {
         $doc = new DOMDocument('1.0');
         if ([] === $header_record && [] === $footer_record) {
@@ -70,33 +65,43 @@ class HTMLConverter
             $this->addHTMLAttributes($table);
             $doc->appendChild($table);
 
-            return $doc->saveHTML();
+            /** @var string $content */
+            $content = $doc->saveHTML();
+
+            return $content;
         }
 
         $table = $doc->createElement('table');
+
         $this->addHTMLAttributes($table);
         $this->appendHeaderSection('thead', $header_record, $table);
         $this->appendHeaderSection('tfoot', $footer_record, $table);
+
         $table->appendChild($this->xml_converter->rootElement('tbody')->import($records, $doc));
+
         $doc->appendChild($table);
 
-        return $doc->saveHTML();
+        return (string) $doc->saveHTML();
     }
 
     /**
-     * Creates a DOMElement representing a HTML table heading section.
+     * Creates a DOMElement representing an HTML table heading section.
+     *
+     * @throws DOMException
      */
-    protected function appendHeaderSection(string $node_name, array $record, DOMElement $table)
+    protected function appendHeaderSection(string $node_name, array $record, DOMElement $table): void
     {
         if ([] === $record) {
             return;
         }
 
+        /** @var DOMDocument $ownerDocument */
+        $ownerDocument = $table->ownerDocument;
         $node = $this->xml_converter
             ->rootElement($node_name)
             ->recordElement('tr')
             ->fieldElement('th')
-            ->import([$record], $table->ownerDocument)
+            ->import([$record], $ownerDocument)
         ;
 
         /** @var DOMElement $element */
@@ -110,7 +115,7 @@ class HTMLConverter
     /**
      * Adds class and id attributes to an HTML tag.
      */
-    protected function addHTMLAttributes(DOMElement $node)
+    protected function addHTMLAttributes(DOMElement $node): void
     {
         $node->setAttribute('class', $this->class_name);
         $node->setAttribute('id', $this->id_value);
@@ -124,7 +129,7 @@ class HTMLConverter
     public function table(string $class_name, string $id_value = ''): self
     {
         if (1 === preg_match(",\s,", $id_value)) {
-            throw new DOMException("the id attribute's value must not contain whitespace (spaces, tabs etc.)");
+            throw new DOMException("The id attribute's value must not contain whitespace (spaces, tabs etc.)");
         }
         $clone = clone $this;
         $clone->class_name = $class_name;

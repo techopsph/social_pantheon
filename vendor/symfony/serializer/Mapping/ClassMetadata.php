@@ -12,8 +12,6 @@
 namespace Symfony\Component\Serializer\Mapping;
 
 /**
- * {@inheritdoc}
- *
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
 class ClassMetadata implements ClassMetadataInterface
@@ -40,42 +38,38 @@ class ClassMetadata implements ClassMetadataInterface
     private $reflClass;
 
     /**
-     * Constructs a metadata for the given class.
+     * @var ClassDiscriminatorMapping|null
      *
-     * @param string $class
+     * @internal This property is public in order to reduce the size of the
+     *           class' serialized representation. Do not access it. Use
+     *           {@link getClassDiscriminatorMapping()} instead.
      */
-    public function __construct($class)
-    {
-        $this->name = $class;
-    }
+    public $classDiscriminatorMapping;
 
     /**
-     * {@inheritdoc}
+     * Constructs a metadata for the given class.
      */
-    public function getName()
+    public function __construct(string $class, ClassDiscriminatorMapping $classDiscriminatorMapping = null)
+    {
+        $this->name = $class;
+        $this->classDiscriminatorMapping = $classDiscriminatorMapping;
+    }
+
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addAttributeMetadata(AttributeMetadataInterface $attributeMetadata)
     {
         $this->attributesMetadata[$attributeMetadata->getName()] = $attributeMetadata;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getAttributesMetadata()
+    public function getAttributesMetadata(): array
     {
         return $this->attributesMetadata;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function merge(ClassMetadataInterface $classMetadata)
     {
         foreach ($classMetadata->getAttributesMetadata() as $attributeMetadata) {
@@ -87,10 +81,7 @@ class ClassMetadata implements ClassMetadataInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getReflectionClass()
+    public function getReflectionClass(): \ReflectionClass
     {
         if (!$this->reflClass) {
             $this->reflClass = new \ReflectionClass($this->getName());
@@ -99,16 +90,30 @@ class ClassMetadata implements ClassMetadataInterface
         return $this->reflClass;
     }
 
+    public function getClassDiscriminatorMapping(): ?ClassDiscriminatorMapping
+    {
+        return $this->classDiscriminatorMapping;
+    }
+
+    public function setClassDiscriminatorMapping(ClassDiscriminatorMapping $mapping = null)
+    {
+        if (1 > \func_num_args()) {
+            trigger_deprecation('symfony/serializer', '6.2', 'Calling "%s()" without any arguments is deprecated, pass null explicitly instead.', __METHOD__);
+        }
+        $this->classDiscriminatorMapping = $mapping;
+    }
+
     /**
      * Returns the names of the properties that should be serialized.
      *
      * @return string[]
      */
-    public function __sleep()
+    public function __sleep(): array
     {
         return [
             'name',
             'attributesMetadata',
+            'classDiscriminatorMapping',
         ];
     }
 }

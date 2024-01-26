@@ -22,16 +22,13 @@ class ResolveTaggedIteratorArgumentPass extends AbstractRecursivePass
 {
     use PriorityTaggedServiceTrait;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function processValue($value, $isRoot = false)
+    protected function processValue(mixed $value, bool $isRoot = false): mixed
     {
         if (!$value instanceof TaggedIteratorArgument) {
             return parent::processValue($value, $isRoot);
         }
 
-        $value->setValues($this->findAndSortTaggedServices($value->getTag(), $this->container));
+        $value->setValues($this->findAndSortTaggedServices($value, $this->container));
 
         return $value;
     }

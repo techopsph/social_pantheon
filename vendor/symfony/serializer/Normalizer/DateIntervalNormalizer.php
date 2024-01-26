@@ -20,61 +20,59 @@ use Symfony\Component\Serializer\Exception\UnexpectedValueException;
  *
  * @author Jérôme Parmentier <jerome@prmntr.me>
  */
-class DateIntervalNormalizer implements NormalizerInterface, DenormalizerInterface
+class DateIntervalNormalizer implements NormalizerInterface, DenormalizerInterface, CacheableSupportsMethodInterface
 {
-    const FORMAT_KEY = 'dateinterval_format';
+    public const FORMAT_KEY = 'dateinterval_format';
 
-    private $format;
+    private $defaultContext = [
+        self::FORMAT_KEY => '%rP%yY%mM%dDT%hH%iM%sS',
+    ];
 
-    /**
-     * @param string $format
-     */
-    public function __construct($format = '%rP%yY%mM%dDT%hH%iM%sS')
+    public function __construct(array $defaultContext = [])
     {
-        $this->format = $format;
+        $this->defaultContext = array_merge($this->defaultContext, $defaultContext);
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws InvalidArgumentException
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize(mixed $object, string $format = null, array $context = []): string
     {
         if (!$object instanceof \DateInterval) {
             throw new InvalidArgumentException('The object must be an instance of "\DateInterval".');
         }
 
-        $dateIntervalFormat = isset($context[self::FORMAT_KEY]) ? $context[self::FORMAT_KEY] : $this->format;
-
-        return $object->format($dateIntervalFormat);
+        return $object->format($context[self::FORMAT_KEY] ?? $this->defaultContext[self::FORMAT_KEY]);
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $context
      */
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization(mixed $data, string $format = null /* , array $context = [] */): bool
     {
         return $data instanceof \DateInterval;
     }
 
+    public function hasCacheableSupportsMethod(): bool
+    {
+        return __CLASS__ === static::class;
+    }
+
     /**
-     * {@inheritdoc}
-     *
      * @throws InvalidArgumentException
      * @throws UnexpectedValueException
      */
-    public function denormalize($data, $type, $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): \DateInterval
     {
         if (!\is_string($data)) {
-            throw new InvalidArgumentException(sprintf('Data expected to be a string, "%s" given.', \gettype($data)));
+            throw new InvalidArgumentException(sprintf('Data expected to be a string, "%s" given.', get_debug_type($data)));
         }
 
         if (!$this->isISO8601($data)) {
             throw new UnexpectedValueException('Expected a valid ISO 8601 interval string.');
         }
 
-        $dateIntervalFormat = isset($context[self::FORMAT_KEY]) ? $context[self::FORMAT_KEY] : $this->format;
+        $dateIntervalFormat = $context[self::FORMAT_KEY] ?? $this->defaultContext[self::FORMAT_KEY];
 
         $signPattern = '';
         switch (substr($dateIntervalFormat, 0, 2)) {
@@ -87,7 +85,7 @@ class DateIntervalNormalizer implements NormalizerInterface, DenormalizerInterfa
                 $dateIntervalFormat = substr($dateIntervalFormat, 2);
                 break;
         }
-        $valuePattern = '/^'.$signPattern.preg_replace('/%([yYmMdDhHiIsSwW])(\w)/', '(?P<$1>\d+)$2', $dateIntervalFormat).'$/';
+        $valuePattern = '/^'.$signPattern.preg_replace('/%([yYmMdDhHiIsSwW])(\w)/', '(?:(?P<$1>\d+)$2)?', preg_replace('/(T.*)$/', '($1)?', $dateIntervalFormat)).'$/';
         if (!preg_match($valuePattern, $data)) {
             throw new UnexpectedValueException(sprintf('Value "%s" contains intervals not accepted by format "%s".', $data, $dateIntervalFormat));
         }
@@ -111,14 +109,14 @@ class DateIntervalNormalizer implements NormalizerInterface, DenormalizerInterfa
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $context
      */
-    public function supportsDenormalization($data, $type, $format = null)
+    public function supportsDenormalization(mixed $data, string $type, string $format = null /* , array $context = [] */): bool
     {
         return \DateInterval::class === $type;
     }
 
-    private function isISO8601($string)
+    private function isISO8601(string $string): bool
     {
         return preg_match('/^[\-+]?P(?=\w*(?:\d|%\w))(?:\d+Y|%[yY]Y)?(?:\d+M|%[mM]M)?(?:(?:\d+D|%[dD]D)|(?:\d+W|%[wW]W))?(?:T(?:\d+H|[hH]H)?(?:\d+M|[iI]M)?(?:\d+S|[sS]S)?)?$/', $string);
     }
