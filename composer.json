@@ -26,7 +26,6 @@
         "cweagans/composer-patches": "^1.7",
         "drush/drush": "^11 || ^12",
         "goalgorilla/open_social": "~12.0.0",
-        "php": "^8.0",
         "monolog/monolog": "^2.3.5"
     },
     "require-dev": {
